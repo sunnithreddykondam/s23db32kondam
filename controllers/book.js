@@ -10,6 +10,16 @@ exports.book_list = async function (req, res) {
     res.send(`{"error": ${err}}`);
   }
 };
+exports.book_view_all_Page = async function (req, res) {
+  try {
+    theBooks = await Book.find();
+    console.log(theBooks);
+    res.render("book", { title: "Book Search Results", results: theBooks });
+  } catch (err) {
+    res.status(500);
+    res.send(`{"error": ${err}}`);
+  }
+};
 // for a specific Book.
 exports.book_detail = async function (req, res) {
   res.send("NOT IMPLEMENTED: Book detail: " + req.params.id);

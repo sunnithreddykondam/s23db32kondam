@@ -3,13 +3,14 @@ extends layout
 block content
   h1= title
   -
-    let results=[
-      { name: "Harry Potter", author: "J.K Rowling", year:2000},
-      { name: "Bahubali", author: "Rajamouli", year:2001},
-      { name: "Let us C", author: "Denis Ritch", year:2002}]
+    let result=results
+    //- [
+    //-   { name: "Harry Potter", author: "J.K Rowling", year:2000},
+    //-   { name: "Bahubali", author: "Rajamouli", year:2001},
+    //-   { name: "Let us C", author: "Denis Ritch", year:2002}]
   div(class="container-fluid")
     div(class="row")
-        for item, index in results
+        for item, index in result
           div(class="col-sm-2",onclick=`buy(${index})`)
             p Name: #{item.name}
             p author: #{item.author}

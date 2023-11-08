@@ -15,6 +15,6 @@ router.put("/books/:id", book_controller.book_update_put);
 // GET request for one Book.
 // router.get("/books/:id", book_controller.book_detail);
 // GET request for list of all Book items.
-router.get("/books", book_controller.book_list);
-// router.get("/books", book_controller.book_view_all_Page);
+// router.get("/books", book_controller.book_list);
+router.get("/books", book_controller.book_view_all_Page);
 module.exports = router;
