@@ -54,7 +54,16 @@ exports.book_create_post = async function (req, res) {
 };
 // Handle Book delete form on DELETE.
 exports.book_delete = async function (req, res) {
-  res.send("NOT IMPLEMENTED: Book delete DELETE " + req.params.id);
+  // res.send("NOT IMPLEMENTED: Book delete DELETE " + req.params.id);
+  console.log("delete " + req.params.id);
+  try {
+    result = await Book.findByIdAndDelete(req.params.id);
+    console.log("Removed " + result);
+    res.send(result);
+  } catch (err) {
+    res.status(500);
+    res.send(`{"error": Error deleting ${err}}`);
+  }
 };
 // Handle Book update form on PUT.
 exports.book_update_put = async function (req, res) {
