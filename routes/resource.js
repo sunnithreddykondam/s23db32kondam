@@ -17,4 +17,5 @@ router.get("/books/:id", book_controller.book_detail);
 // GET request for list of all Book items.
 // router.get("/books", book_controller.book_list);
 router.get("/books", book_controller.book_view_all_Page);
+router.get("/detail", book_controller.book_view_one_Page);
 module.exports = router;
