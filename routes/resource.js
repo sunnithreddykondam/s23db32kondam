@@ -21,4 +21,5 @@ router.get("/books", book_controller.book_view_all_Page);
 router.get("/detail", book_controller.book_view_one_Page);
 router.get("/create", book_controller.book_create_Page);
 router.get("/update", book_controller.book_update_Page);
+router.get("/delete", book_controller.book_delete_Page);
 module.exports = router;
