@@ -15,7 +15,7 @@ block content
       div #{bookid}
 
     - let actionid = "/resource/books/" + bookid
-    form(id='BookForm', action= actionid, method="PUT" )
+    form(id='BookForm', action= actionid, method="PUT" style='border-radius: 5px;background-color: #f2f2f2;padding: 20px;')
       div.form-group
         label.bookAttr(for='name') Book Name
         input#book_type(type='text', name='name', value= book_name)
@@ -25,7 +25,7 @@ block content
       div.form-group
         label.bookAttr(for='author') Book author
         input#size(type='text', name='author', value= book_author)
-      input(type="submit")
+      input(type="submit" style='background-color: #04AA6D;border: none;color: white;padding: 16px 32px;text-decoration: none;margin: 4px 2px;cursor: pointer;')
       script.
         document.forms['BookForm'].addEventListener('submit', (event) => {
           event.preventDefault();
