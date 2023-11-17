@@ -9,13 +9,19 @@ block content
     //-   { name: "Bahubali", author: "Rajamouli", year:2001},
     //-   { name: "Let us C", author: "Denis Ritch", year:2002}]
   div(class="container-fluid")
-    div(class="row")
+    div(class="row m-1")
         for item, index in result
+          - let destination = `dispatch(\"/resource/update?id=${item._id}\")`
           div(class="col-sm-2",onclick=`buy(${index})`)
             p Name: #{item.name}
             p author: #{item.author}
             p year: #{item.year}
+          button.btn( class="btn-primary ml-1", onclick= destination) Update
   script. 
     function buy(index) {
       alert(`You purchased item ${index}`);
+    }
+  script.
+    function dispatch(path){
+      window.location.href=path
     }
