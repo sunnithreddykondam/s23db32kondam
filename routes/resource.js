@@ -1,5 +1,13 @@
 var express = require("express");
 var router = express.Router();
+const passport = require("passport");
+
+const secured = (req, res, next) => {
+  if (req.user) {
+    return next();
+  }
+  res.redirect("/login");
+};
 // Require controller modules.
 var api_controller = require("../controllers/api");
 var book_controller = require("../controllers/book");
@@ -20,6 +28,10 @@ router.get("/books", book_controller.book_view_all_Page);
 
 router.get("/detail", book_controller.book_view_one_Page);
 router.get("/create", book_controller.book_create_Page);
-router.get("/update", book_controller.book_update_Page);
+router.get("/update", secured, book_controller.book_update_Page);
 router.get("/delete", book_controller.book_delete_Page);
+router.post("/login", passport.authenticate("local"), function (req, res) {
+  res.redirect("/");
+});
+
 module.exports = router;

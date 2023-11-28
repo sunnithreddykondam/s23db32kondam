@@ -15,20 +15,34 @@ block content
       div #{bookid}
 
     - let actionid = "/resource/books/" + bookid
-    form(id='BookForm', action= actionid, method="PUT" style='border-radius: 5px;background-color: #f2f2f2;padding: 20px;')
+    form(id='BookForm', action= actionid, method="PUT", style='border-radius: 5px;background-color: #f2f2f2;padding: 20px;')
       div.form-group
         label.bookAttr(for='name') Book Name
         input#book_type(type='text', name='name', value= book_name)
       div.form-group
         label.bookAttr(for='year') Book year
-        input#cost(type='number', name='year', value= book_year)
+        input#book_year(type='number', name='year', value= book_year)
       div.form-group
         label.bookAttr(for='author') Book author
         input#size(type='text', name='author', value= book_author)
-      input(type="submit" style='background-color: #04AA6D;border: none;color: white;padding: 16px 32px;text-decoration: none;margin: 4px 2px;cursor: pointer;')
+      input(type="submit", style='background-color: #04AA6D;border: none;color: white;padding: 16px 32px;text-decoration: none;margin: 4px 2px;cursor: pointer;')
       script.
         document.forms['BookForm'].addEventListener('submit', (event) => {
           event.preventDefault();
+
+          // Convert the year value to a number
+          const yearInput = event.target.elements.year;
+          const yearValue = Number(yearInput.value);
+
+          // Check if the year is within the specified range
+          if (isNaN(yearValue) || yearValue < 1800 || yearValue > 2022) {
+            alert("Year should be a number between 1800 and 2022");
+            return;
+          }
+
+          // Set the converted year back to the input field
+          yearInput.value = yearValue;
+
           // TODO do something here to show user that the form is being submitted
           fetch(event.target.action, {
             method: 'PUT',
