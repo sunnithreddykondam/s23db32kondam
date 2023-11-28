@@ -27,9 +27,9 @@ router.get("/books/:id", book_controller.book_detail);
 router.get("/books", book_controller.book_view_all_Page);
 
 router.get("/detail", book_controller.book_view_one_Page);
-router.get("/create", book_controller.book_create_Page);
+router.get("/create", secured, book_controller.book_create_Page);
 router.get("/update", secured, book_controller.book_update_Page);
-router.get("/delete", book_controller.book_delete_Page);
+router.get("/delete", secured, book_controller.book_delete_Page);
 router.post("/login", passport.authenticate("local"), function (req, res) {
   res.redirect("/");
 });
