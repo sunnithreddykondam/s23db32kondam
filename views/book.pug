@@ -9,19 +9,32 @@ block content
     //-   { name: "Bahubali", author: "Rajamouli", year:2001},
     //-   { name: "Let us C", author: "Denis Ritch", year:2002}]
   div(class="container-fluid")
+    a(href='/resource/create', class='btn btn-primary mb-2') Create Book
     div(class="row m-1")
         for item, index in result
-          - let destination = `dispatch(\"/resource/update?id=${item._id}\")`
+          - let destination1 = `dispatch1(\"/resource/detail?id=${item._id}\")`
+          - let destination2 = `dispatch2(\"/resource/update?id=${item._id}\")`
+          - let destination3 = `dispatch3(\"/resource/delete?id=${item._id}\")`
           div(class="col-sm-2",onclick=`buy(${index})`)
             p Name: #{item.name}
             p author: #{item.author}
             p year: #{item.year}
-          button.btn( class="btn-primary ml-1", onclick= destination) Update
+            button.btn( class="btn-primary ml-1", onclick= destination1) Update
+            button.btn( class="btn-primary ml-1", onclick= destination2) Update
+            button.btn( class="btn-primary ml-1", onclick= destination3) Update
   script. 
     function buy(index) {
       alert(`You purchased item ${index}`);
     }
   script.
-    function dispatch(path){
+    function dispatch1(path){
+      window.location.href=path
+    }
+  script.
+    function dispatch2(path){
+      window.location.href=path
+    }
+  script.
+    function dispatch3(path){
       window.location.href=path
     }
